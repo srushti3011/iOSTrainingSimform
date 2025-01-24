@@ -32,3 +32,29 @@ class Password {
 var pass1 = Password(password: "mnoasd")
 pass1.password = "hello"
 
+//--------------------------------------------------------------
+//trying a loop for willSet and didSet
+
+class Person {
+    var name : String
+    var age : Int {
+        willSet {
+            print("will set")
+            print(self.age)
+        }
+        didSet {
+            print("did set")
+            print(self.age)
+        }
+    }
+    
+    init(name : String, age : Int) {
+        self.name = name
+        self.age = age
+    }
+}
+
+var person1 = Person(name: "Sally", age : 20)
+for i in 1...3 {
+    person1.age+=1
+}

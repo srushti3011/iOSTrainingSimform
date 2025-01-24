@@ -49,3 +49,13 @@ class Circle {
 var cir1 = Circle(radius: 5.3)
 print(cir1.area)
 //cir1.area = 30 gives error as area is a get-only property
+
+
+// analyzing the split method used in class Name
+
+var str = "Hello Everyone  q"
+var strWords = str.split(separator: " ")
+print(strWords.count)
+for i in strWords {
+    print(i)
+}

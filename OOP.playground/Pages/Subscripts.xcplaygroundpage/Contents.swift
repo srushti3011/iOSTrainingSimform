@@ -15,6 +15,12 @@ class Add {
         }
     }
     
+    subscript (num1 : Int, num2 : Int) -> Int {
+        get {
+            return num1 + num2
+        }
+    } //overloading subscript
+    
     init(addBy: Int) {
         self.addBy = addBy
     }
@@ -22,17 +28,18 @@ class Add {
 
 var num1 = Add(addBy: 5)
 for i in 1...10 {
-    print(num1[i])
+//    print(num1[i])
+    print(num1[i, i+1])
 }
 
 //-----------------------------------------------
 
 class Fruits {
-    var ripeColor : String
-    var rawColor : String
-    var name : String
+    var ripeColor: String
+    var rawColor: String
+    var name: String
     
-    subscript (type : String) -> String {
+    subscript (type: String) -> String {
         get {
             switch type {
             case "ripeColor":

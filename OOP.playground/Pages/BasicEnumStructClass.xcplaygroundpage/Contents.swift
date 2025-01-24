@@ -6,10 +6,6 @@ var greeting = "Hello, playground"
 
 //: [Next](@next)
 
-: [Previous](@previous)
-import Foundation
-//: [Next](@next)
-
 enum Colors {
     case Red, White, Green, Blue
 }
@@ -18,7 +14,7 @@ print(c)
 c = .Blue //shorthand assignment
 print(c)
 
- matching enums to switch statements
+// matching enums to switch statements
 
 switch c {
 case .Red:
@@ -29,16 +25,17 @@ case .White:
 
 case .Green:
     print("Green color")
-
-default:
-    print("Some other color")
+     
 case .Blue:
     print("Blue color")
+     
+ default:
+     print("Some other color")
 }
 // swtich should be exhaustive
 // else use default to bypass exhaustiveness
 
-enum Numbers : CaseIterable {
+enum Numbers: CaseIterable {
     case one, two, three, four
 }
 //print(Numbers.allCases.count)
@@ -50,7 +47,7 @@ for i in Numbers.allCases {
 var d = Colors.White
 print(c, d)
 
-enums with associated values
+//enums with associated values
 
 
 enum FruitColors{
@@ -59,8 +56,7 @@ enum FruitColors{
 }
 
 var fruit = FruitColors.Apple("Red")
-var fruit2
-swich for associated vales
+//swich for associated vales
 var value = ""
 switch fruit{
 case .Mango(let color):
@@ -71,12 +67,12 @@ case .Apple(let color):
 
 }
 
-enum Nums : CaseIterable {
-    case 1,2,3
-}
-print(nums.allCases)
+//enum Nums : CaseIterable {
+//    case 1,2,3
+//}
+//print(nums.allCases)
 
-enum even : Int {
+enum even: Int {
     case two = 8
     case four
 }
@@ -109,7 +105,7 @@ case .three(let str):
     print("Value is \(str)")
 }
 
-enum nums {
+enum nums : Int {
     case one = 9,two,three
 }
 
@@ -140,38 +136,38 @@ case .numPlusNum(let num1, let num2):
 }
 
 
-recursive enumerations
-enum add {
-    case num(Int)
-    indirect case numPlusNum(add, add)
-}
-
-// Create the individual numbers
-let num5 = add.num(5)
-let num7 = add.num(7)
-let num10 = add.num(10)
-
-// Combine 5 + 7 = 12
-let sum5And7 = add.numPlusNum(num5, num7)
-
-// Combine (5 + 7) + 10 = 22
-let finalSum = add.numPlusNum(sum5And7, num10)
-
-// A function to calculate the total sum of the nested enum cases
-func calculateSum(_ value: add) -> Int {
-    switch value {
-    case .num(let number):
-        return number
-    case .numPlusNum(let left, let right):
-        return calculateSum(left) + calculateSum(right)
-    }
-}
+//recursive enumerations
+//enum add {
+//    case num(Int)
+//    indirect case numPlusNum(add, add)
+//}
+//
+//// Create the individual numbers
+//let num5 = add.num(5)
+//let num7 = add.num(7)
+//let num10 = add.num(10)
+//
+//// Combine 5 + 7 = 12
+//let sum5And7 = add.numPlusNum(num5, num7)
+//
+//// Combine (5 + 7) + 10 = 22
+//let finalSum = add.numPlusNum(sum5And7, num10)
+//
+//// A function to calculate the total sum of the nested enum cases
+//func calculateSum(_ value: add) -> Int {
+//    switch value {
+//    case .num(let number):
+//        return number
+//    case .numPlusNum(let left, let right):
+//        return calculateSum(left) + calculateSum(right)
+//    }
+//}
 
 // Print the final result
-let result = calculateSum(finalSum)
-print("Result: \(result)")  // Prints: Result: 22
+//let result = calculateSum(finalSum)
+//print("Result: \(result)")  // Prints: Result: 22
 
-struct and class
+//struct and class
 struct Coord {
     var x = 0
     var y = 0
@@ -202,11 +198,11 @@ struct Student {
 let stu1 = Student()
 print(stu1.name , stu1.num)
 
-stu1.name = "Modifiedname"
+//stu1.name = "Modifiedname"
 print(stu1.name)
-can't modify because stu1 is let
+//can't modify because stu1 is let
 
-Computed Properties (has getters and setters)
+//Computed Properties (has getters and setters)
 
 struct Area {
     var width = 0
@@ -223,36 +219,35 @@ print(ar1.area)
 
 
 //imp
-class MyClass {
-    var value = 42
-    var closure: (() -> Void)?
+//class MyClass {
+//    var value = 42
+//    var closure: (() -> Void)?
+//
+//    func setupClosure() {
+//        closure = { [unowned self] in
+//            if let s = self {
+//                print(s.value)
+//            }
+//            else{
+//                print("h")
+//            }
+//        }
+//    }
+//}
 
-    func setupClosure() {
-        closure = { [unowned self] in
-            if let s = self {
-
-                print(s.value)
-            }
-            else{
-                print("h")
-            }
-        }
-    }
-}
-
-var obj: MyClass? = MyClass()
-obj?.setupClosure()
-
-var m = obj?.closure  // Prints: 42
-obj = nil  // Now the MyClass instance is deallocated
-m?()
-
+//var obj: MyClass? = MyClass()
+//obj?.setupClosure()
+//
+//var m = obj?.closure  // Prints: 42
+//obj = nil  // Now the MyClass instance is deallocated
+//m?()
 
 
-var m = [1,2,5,3]
-m.sorted(by:>)
 
-struct Coord{
+var mn = [1,2,5,3]
+mn.sorted(by:>)
+
+struct Coordinates {
     var x = 0
-    var y =
+    var y = 0
 }
