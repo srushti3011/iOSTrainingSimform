@@ -193,3 +193,26 @@ class Test {
 }
 var tOne = Test()
 tOne.displayM()
+
+//checking whether the private members are allocated space during inheritance
+
+class ParentClass {
+    private var name: String
+    var age: Int
+    
+    init(name: String, age : Int) {
+        self.name = {
+            print("Name is private and allocated memory")
+            return name
+        }()
+        self.age = age
+    }
+}
+
+class ChildClass: ParentClass {
+    override init(name: String, age: Int) {
+        super.init(name: name, age: age)
+    }
+}
+
+var childOne = ChildClass(name: "Child1", age: 5)
