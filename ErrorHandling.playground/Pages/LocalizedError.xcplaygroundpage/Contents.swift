@@ -31,6 +31,9 @@ func makeReq() throws {
     if !serverStatus {
 //        throw NSError(domain: "", code: 123)
         throw errorFetching.serverDown
+        defer {
+            print("defer")
+        }
     }
     else if !reqBody {
         throw errorFetching.wrongReqBody
