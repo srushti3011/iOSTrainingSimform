@@ -165,6 +165,38 @@ extension [Any] {
 var s: [Any] = [1,2,"p"]
 s.printArr()
 
+// extension for Array of type Int
+
+//extension Array where Element==Int {}
+//extension Array {}
+extension [Int] {
+    func len() -> Int {
+        return self.count
+    }
+}
+var intArr = [1,4,6,7,3]
+print(intArr.len())
+
+// extension for Dictionary
+
+extension [Int: String] {
+    func printDi() {
+        for (key, value) in self {
+            print(key, value)
+        }
+    }
+    func dictionarySize() -> Int {
+        return self.count
+    }
+}
+
+var dictionaryOne = [
+    1: "NameOne",
+    2: "NameTwo"
+]
+dictionaryOne.printDi()
+print(dictionaryOne.dictionarySize())
+
 // making extension for a class that is final
 
 final class FinalClass {
@@ -182,3 +214,79 @@ extension FinalClass {
 
 var fClOne = FinalClass(varOne: 6)
 fClOne.display()
+
+
+// init in extension of class
+
+class TestClass {
+    let var1: Int
+    init(var1: Int) {
+//        self.var1 = funccall()
+        self.var1 = var1
+    }
+}
+
+@objc extension TestClass {
+    convenience init() {
+        self.init(var1: 5)
+    }
+    static func doo() {
+        print("Do")
+    }
+    class func doo1() {
+        print("doo1")
+    }
+    func display() {
+        print("display")
+    }
+}
+
+TestClass.doo1()
+
+// have a class, make its extension, try overriding the method
+
+class TestChildClass: TestClass {
+    override func display() {
+        print("display of TestChildClass")
+    }
+//    override func doo1() {
+//    } // Method does not override any method from its superclass
+}
+
+let TestChildInstance = TestChildClass(var1: 5)
+TestChildInstance.display()
+
+// have a class, have its extension and define same class in both; try it for primitive type as well; for same signature and diff. signature method
+
+//class TestClass1 {
+//    func display() {
+//        print("hello")
+//    }
+//}
+//extension TestClass1 {
+//    func display() { // gives error, invalid redeclaration of display
+//        print("display from extension")
+//    }
+//}
+
+// extensions inside class
+
+//class HaveExtension {
+//    func display() {
+//        print("display of HaveExtension")
+//    }
+//    extension HaveExtension {
+//    } // gives error that declaration valid only at file scope
+//}
+
+
+//extension String {
+//    var count: Int {
+//        return 5
+//    }
+//}
+
+//print("a".count)
+
+
+

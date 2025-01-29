@@ -19,8 +19,8 @@ protocol Teach: AnyObject {
 }
 
 class Principal {
-    var delegate: Teach?
-//    weak var delegate: Teach?
+//    var delegate: Teach?
+    weak var delegate: Teach? // for this you can assign any object of the type that confirms to the Teach protocol
     
     func delegateWorkToTeacher() {
         print("delegating the work")
@@ -46,3 +46,54 @@ class Teacher: Teach {
 
 var teacherOne = Teacher()
 teacherOne.principal.delegateWorkToTeacher()
+
+class NewTeacher: Teach {
+    var principal = Principal()
+    
+    init(){
+        principal.delegate = self
+    }
+    
+    func takeTest() {
+        print("new teacher takes test")
+    }
+    
+    func completeSyllabus() {
+        print("new teacher completing the syllabus")
+    }
+}
+
+var newTeacherOne = NewTeacher()
+newTeacherOne.principal.delegateWorkToTeacher()
+// manager gives a programmer to add two numbers
+
+//class Manager {
+//    var developer: Programmer?
+//    
+//    func delegateWorkToProgrammer() {
+//        var res = developer?.addTwoNos(num1: 6, num2: 5)
+//        if res != nil {
+//            print(res!)
+//        }
+//    }
+//    
+//    func haveMeetings() {}
+//    
+//    func manageFinances() {}
+//}
+//
+//class Programmer {
+//    
+//    var manager = Manager()
+//    init() {
+//        manager.developer = self
+//    }
+//    
+//    func addTwoNos(num1: Int, num2: Int) -> Int {
+//        return num1 + num2
+//    }
+//}
+//
+//var programmerOne = Programmer()
+//programmerOne.manager.delegateWorkToProgrammer()
+//programmerOne.manager.manageFinances()

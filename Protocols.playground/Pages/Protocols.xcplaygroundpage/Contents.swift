@@ -184,14 +184,14 @@ class ImpProt1: Prot {
 
 var instOne = ImpProt()
 
-if let inst = instOne as? Prot {
+if instOne is Prot {
     print("yes")
 }
 
 //optional protocols members
 
 @objc protocol OptionalProt {
-    @objc func func1()
+    @objc optional func func1()
     func func2()
 }
 
@@ -205,3 +205,52 @@ class Imple: OptionalProt {
         print("func2")
     }
 }
+
+var optionalOne = Imple()
+optionalOne.func2()
+
+protocol Doable {
+    func display()
+    func displayAll()
+}
+
+extension Doable {
+    func display() {
+        print("display method")
+    }
+    func displayAll() {
+        print("display all method")
+    }
+}
+
+class Do: Doable {
+    init() {
+        self.display()
+        self.displayAll()
+    }
+    func display() {
+        print("custom display method")
+    }
+    func displayAll() {
+        print("custom display all method")
+    }
+}
+
+var doOne = Do()
+
+class DoChild: Do {
+    override init() {
+        super.init()
+    }
+    override func display() {
+        print("overridden display")
+    }
+    override func displayAll() {
+        print("overridden display all method")
+    }
+} // if the default implementation is only used in the Do class and we try to override those methods in DoChild, we get the error that no such method in Do's body
+//if we want to override the method in DoChild you compulsorily have to define method in Do class as well
+
+var doChild = DoChild()
+
+// types conforming to Equatable, Hashable, Comparable protocols
